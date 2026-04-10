@@ -68,6 +68,7 @@ const MAPPING = {
   'chevron.left.forwardslash.chevron.right': 'code',
   'chevron.right': 'chevron-right',
   'rectangle.portrait.and.arrow.right': 'logout',
+  'cloud.fill': 'cloud',
 } as IconMapping;
 
 /**

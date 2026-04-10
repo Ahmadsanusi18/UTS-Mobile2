@@ -23,7 +23,7 @@
  * Route: /(tabs)/modul
  */
 
-import { useState } from 'react';
+import { useState } from "react";
 import {
   Alert,
   Modal,
@@ -34,8 +34,11 @@ import {
   TextInput,
   useWindowDimensions,
   View,
-} from 'react-native';
-import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+} from "react-native";
+import {
+  SafeAreaView,
+  useSafeAreaInsets,
+} from "react-native-safe-area-context";
 
 /* =============================================================================
    KONSTANTA: BERAPA BANYAK DATA PER HALAMAN?
@@ -70,26 +73,56 @@ type Mahasiswa = {
    ubah atau hapus.
    ============================================================================= */
 const DATA_AWAL: Mahasiswa[] = [
-  { id: '1', nim: '210001', nama: 'Ahmad Rizki', prodi: 'Teknik Informatika' },
-  { id: '2', nim: '210002', nama: 'Budi Santoso', prodi: 'Sistem Informasi' },
-  { id: '3', nim: '210003', nama: 'Citra Dewi', prodi: 'Teknik Informatika' },
-  { id: '4', nim: '210004', nama: 'Dewi Lestari', prodi: 'Manajemen' },
-  { id: '5', nim: '210005', nama: 'Eko Prasetyo', prodi: 'Sistem Informasi' },
-  { id: '6', nim: '210006', nama: 'Fitri Handayani', prodi: 'Teknik Informatika' },
-  { id: '7', nim: '210007', nama: 'Gilang Ramadhan', prodi: 'Manajemen' },
-  { id: '8', nim: '210008', nama: 'Hesti Wijaya', prodi: 'Sistem Informasi' },
-  { id: '9', nim: '210009', nama: 'Indra Kusuma', prodi: 'Teknik Informatika' },
-  { id: '10', nim: '210010', nama: 'Joko Widodo', prodi: 'Sistem Informasi' },
-  { id: '11', nim: '210011', nama: 'Kartika Sari', prodi: 'Manajemen' },
-  { id: '12', nim: '210012', nama: 'Lukman Hakim', prodi: 'Teknik Informatika' },
-  { id: '13', nim: '210013', nama: 'Maya Puspita', prodi: 'Sistem Informasi' },
-  { id: '14', nim: '210014', nama: 'Nanda Pratama', prodi: 'Teknik Informatika' },
-  { id: '15', nim: '210015', nama: 'Oki Setiawan', prodi: 'Manajemen' },
-  { id: '16', nim: '210016', nama: 'Putri Melati', prodi: 'Sistem Informasi' },
-  { id: '17', nim: '210017', nama: 'Rizki Firdaus', prodi: 'Teknik Informatika' },
-  { id: '18', nim: '210018', nama: 'Siti Aminah', prodi: 'Manajemen' },
-  { id: '19', nim: '210019', nama: 'Taufik Hidayat', prodi: 'Sistem Informasi' },
-  { id: '20', nim: '210020', nama: 'Umar Abdullah', prodi: 'Teknik Informatika' },
+  { id: "1", nim: "210001", nama: "Ahmad Rizki", prodi: "Teknik Informatika" },
+  { id: "2", nim: "210002", nama: "Budi Santoso", prodi: "Sistem Informasi" },
+  { id: "3", nim: "210003", nama: "Citra Dewi", prodi: "Teknik Informatika" },
+  { id: "4", nim: "210004", nama: "Dewi Lestari", prodi: "Manajemen" },
+  { id: "5", nim: "210005", nama: "Eko Prasetyo", prodi: "Sistem Informasi" },
+  {
+    id: "6",
+    nim: "210006",
+    nama: "Fitri Handayani",
+    prodi: "Teknik Informatika",
+  },
+  { id: "7", nim: "210007", nama: "Gilang Ramadhan", prodi: "Manajemen" },
+  { id: "8", nim: "210008", nama: "Hesti Wijaya", prodi: "Sistem Informasi" },
+  { id: "9", nim: "210009", nama: "Indra Kusuma", prodi: "Teknik Informatika" },
+  { id: "10", nim: "210010", nama: "Joko Widodo", prodi: "Sistem Informasi" },
+  { id: "11", nim: "210011", nama: "Kartika Sari", prodi: "Manajemen" },
+  {
+    id: "12",
+    nim: "210012",
+    nama: "Lukman Hakim",
+    prodi: "Teknik Informatika",
+  },
+  { id: "13", nim: "210013", nama: "Maya Puspita", prodi: "Sistem Informasi" },
+  {
+    id: "14",
+    nim: "210014",
+    nama: "Nanda Pratama",
+    prodi: "Teknik Informatika",
+  },
+  { id: "15", nim: "210015", nama: "Oki Setiawan", prodi: "Manajemen" },
+  { id: "16", nim: "210016", nama: "Putri Melati", prodi: "Sistem Informasi" },
+  {
+    id: "17",
+    nim: "210017",
+    nama: "Rizki Firdaus",
+    prodi: "Teknik Informatika",
+  },
+  { id: "18", nim: "210018", nama: "Siti Aminah", prodi: "Manajemen" },
+  {
+    id: "19",
+    nim: "210019",
+    nama: "Taufik Hidayat",
+    prodi: "Sistem Informasi",
+  },
+  {
+    id: "20",
+    nim: "210020",
+    nama: "Umar Abdullah",
+    prodi: "Teknik Informatika",
+  },
 ];
 
 export default function ModulScreen() {
@@ -118,7 +151,7 @@ export default function ModulScreen() {
      mahasiswaEdit = kalau lagi mode ubah, ini mahasiswa yang lagi diedit;
      kalau tambah, ini null. */
   const [modalVisible, setModalVisible] = useState(false);
-  const [modeForm, setModeForm] = useState<'tambah' | 'ubah'>('tambah');
+  const [modeForm, setModeForm] = useState<"tambah" | "ubah">("tambah");
   const [mahasiswaEdit, setMahasiswaEdit] = useState<Mahasiswa | null>(null);
 
   /* ----- State isian form (NIM, Nama, Prodi yang lagi diketik) -----
@@ -126,9 +159,9 @@ export default function ModulScreen() {
      kita isi dengan data mahasiswa yang dipilih. TextInput di bawah
      nanti pakai value={formNim} dan onChangeText={setFormNim} — jadi
      apa yang kamu ketik langsung nyimpan ke state ini. */
-  const [formNim, setFormNim] = useState('');
-  const [formNama, setFormNama] = useState('');
-  const [formProdi, setFormProdi] = useState('');
+  const [formNim, setFormNim] = useState("");
+  const [formNama, setFormNama] = useState("");
+  const [formProdi, setFormProdi] = useState("");
 
   /* =========================================================================
      BAGIAN 2: NILAI YANG DIHITUNG DARI STATE (untuk pagination & tabel)
@@ -172,11 +205,11 @@ export default function ModulScreen() {
      Kita set mode "tambah", clear mahasiswa yang lagi diedit, kosongin
      form (NIM, Nama, Prodi), terus tampilin modal. */
   const handleBukaTambah = () => {
-    setModeForm('tambah');
+    setModeForm("tambah");
     setMahasiswaEdit(null);
-    setFormNim('');
-    setFormNama('');
-    setFormProdi('');
+    setFormNim("");
+    setFormNama("");
+    setFormProdi("");
     setModalVisible(true);
   };
 
@@ -186,7 +219,7 @@ export default function ModulScreen() {
      yang mana yang diganti), isi form dengan nim/nama/prodi-nya m,
      terus tampilin modal. */
   const handleBukaUbah = (m: Mahasiswa) => {
-    setModeForm('ubah');
+    setModeForm("ubah");
     setMahasiswaEdit(m);
     setFormNim(m.nim);
     setFormNama(m.nama);
@@ -200,9 +233,9 @@ export default function ModulScreen() {
   const handleTutupModal = () => {
     setModalVisible(false);
     setMahasiswaEdit(null);
-    setFormNim('');
-    setFormNama('');
-    setFormProdi('');
+    setFormNim("");
+    setFormNama("");
+    setFormProdi("");
   };
 
   /* ----- CREATE: Simpan mahasiswa baru -----
@@ -218,7 +251,7 @@ export default function ModulScreen() {
     const nama = formNama.trim();
     const prodi = formProdi.trim();
     if (!nim || !nama || !prodi) {
-      Alert.alert('Perhatian', 'NIM, Nama, dan Prodi wajib diisi.');
+      Alert.alert("Perhatian", "NIM, Nama, dan Prodi wajib diisi.");
       return;
     }
     const baru: Mahasiswa = {
@@ -244,13 +277,13 @@ export default function ModulScreen() {
     const nama = formNama.trim();
     const prodi = formProdi.trim();
     if (!nim || !nama || !prodi) {
-      Alert.alert('Perhatian', 'NIM, Nama, dan Prodi wajib diisi.');
+      Alert.alert("Perhatian", "NIM, Nama, dan Prodi wajib diisi.");
       return;
     }
     setDataMahasiswa((prev) =>
       prev.map((m) =>
-        m.id === mahasiswaEdit.id ? { ...m, nim, nama, prodi } : m
-      )
+        m.id === mahasiswaEdit.id ? { ...m, nim, nama, prodi } : m,
+      ),
     );
     handleTutupModal();
   };
@@ -265,30 +298,26 @@ export default function ModulScreen() {
         di halaman yang enggak ada (misal halaman 2 padahal cuma ada 1
         halaman), kita turunin currentPage ke totalPages yang baru. */
   const handleHapus = (m: Mahasiswa) => {
-    Alert.alert(
-      'Konfirmasi Hapus',
-      `Yakin hapus ${m.nama} (${m.nim})?`,
-      [
-        { text: 'Batal', style: 'cancel' },
-        {
-          text: 'Hapus',
-          style: 'destructive',
-          onPress: () => {
-            const nextList = dataMahasiswa.filter((x) => x.id !== m.id);
-            setDataMahasiswa(nextList);
-            const newTotal = Math.ceil(nextList.length / ITEM_PER_PAGE) || 1;
-            if (currentPage > newTotal) setCurrentPage(newTotal);
-          },
+    Alert.alert("Konfirmasi Hapus", `Yakin hapus ${m.nama} (${m.nim})?`, [
+      { text: "Batal", style: "cancel" },
+      {
+        text: "Hapus",
+        style: "destructive",
+        onPress: () => {
+          const nextList = dataMahasiswa.filter((x) => x.id !== m.id);
+          setDataMahasiswa(nextList);
+          const newTotal = Math.ceil(nextList.length / ITEM_PER_PAGE) || 1;
+          if (currentPage > newTotal) setCurrentPage(newTotal);
         },
-      ]
-    );
+      },
+    ]);
   };
 
   /* Simpan form: kalau mode tambah panggil handleSimpanTambah, kalau
      mode ubah panggil handleSimpanUbah. Satu tombol "Simpan" buat dua
      jalan ini. */
   const handleSubmitForm = () => {
-    if (modeForm === 'tambah') handleSimpanTambah();
+    if (modeForm === "tambah") handleSimpanTambah();
     else handleSimpanUbah();
   };
 
@@ -310,14 +339,15 @@ export default function ModulScreen() {
      ========================================================================= */
 
   return (
-    <SafeAreaView style={styles.container} edges={['bottom']}>
+    <SafeAreaView style={styles.container} edges={["bottom"]}>
       <ScrollView
         style={styles.scroll}
         contentContainerStyle={[
           styles.content,
           { paddingHorizontal: padH, paddingBottom: 32 + insets.bottom },
         ]}
-        showsVerticalScrollIndicator={false}>
+        showsVerticalScrollIndicator={false}
+      >
         {/* Judul + info — typography jelas, jarak nyaman */}
         <Text style={styles.title}>Data Mahasiswa</Text>
         <Text style={styles.subtitle}>
@@ -326,8 +356,12 @@ export default function ModulScreen() {
 
         {/* Tombol Tambah — ukuran sentuh cukup (minHeight 48), warna hijau */}
         <Pressable
-          style={({ pressed }) => [styles.btnTambah, pressed && styles.btnPressed]}
-          onPress={handleBukaTambah}>
+          style={({ pressed }) => [
+            styles.btnTambah,
+            pressed && styles.btnPressed,
+          ]}
+          onPress={handleBukaTambah}
+        >
           <Text style={styles.btnTambahText}>+ Tambah Mahasiswa</Text>
         </Pressable>
 
@@ -348,7 +382,9 @@ export default function ModulScreen() {
                 </View>
                 <View style={styles.cardRow}>
                   <Text style={styles.cardLabel}>Nama</Text>
-                  <Text style={[styles.cardValue, styles.cardValueBold]}>{m.nama}</Text>
+                  <Text style={[styles.cardValue, styles.cardValueBold]}>
+                    {m.nama}
+                  </Text>
                 </View>
                 <View style={styles.cardRow}>
                   <Text style={styles.cardLabel}>Prodi</Text>
@@ -356,8 +392,12 @@ export default function ModulScreen() {
                 </View>
                 <View style={styles.cardActions}>
                   <Pressable
-                    style={({ pressed }) => [styles.btnAksi, pressed && styles.btnPressed]}
-                    onPress={() => handleBukaUbah(m)}>
+                    style={({ pressed }) => [
+                      styles.btnAksi,
+                      pressed && styles.btnPressed,
+                    ]}
+                    onPress={() => handleBukaUbah(m)}
+                  >
                     <Text style={styles.btnAksiText}>Ubah</Text>
                   </Pressable>
                   <Pressable
@@ -366,7 +406,8 @@ export default function ModulScreen() {
                       styles.btnHapus,
                       pressed && styles.btnPressed,
                     ]}
-                    onPress={() => handleHapus(m)}>
+                    onPress={() => handleHapus(m)}
+                  >
                     <Text style={styles.btnAksiText}>Hapus</Text>
                   </Pressable>
                 </View>
@@ -376,22 +417,38 @@ export default function ModulScreen() {
         ) : (
           <>
             <View style={[styles.row, styles.headerRow]}>
-              <Text style={[styles.cell, styles.cellNo, styles.headerText]}>No</Text>
-              <Text style={[styles.cell, styles.cellNim, styles.headerText]}>NIM</Text>
-              <Text style={[styles.cell, styles.cellNama, styles.headerText]}>Nama</Text>
-              <Text style={[styles.cell, styles.cellProdi, styles.headerText]}>Prodi</Text>
-              <Text style={[styles.cell, styles.cellAksi, styles.headerText]}>Aksi</Text>
+              <Text style={[styles.cell, styles.cellNo, styles.headerText]}>
+                No
+              </Text>
+              <Text style={[styles.cell, styles.cellNim, styles.headerText]}>
+                NIM
+              </Text>
+              <Text style={[styles.cell, styles.cellNama, styles.headerText]}>
+                Nama
+              </Text>
+              <Text style={[styles.cell, styles.cellProdi, styles.headerText]}>
+                Prodi
+              </Text>
+              <Text style={[styles.cell, styles.cellAksi, styles.headerText]}>
+                Aksi
+              </Text>
             </View>
             {dataPerHalaman.map((m, index) => (
               <View key={m.id} style={styles.row}>
-                <Text style={[styles.cell, styles.cellNo]}>{noUrutPertama + index}</Text>
+                <Text style={[styles.cell, styles.cellNo]}>
+                  {noUrutPertama + index}
+                </Text>
                 <Text style={[styles.cell, styles.cellNim]}>{m.nim}</Text>
                 <Text style={[styles.cell, styles.cellNama]}>{m.nama}</Text>
                 <Text style={[styles.cell, styles.cellProdi]}>{m.prodi}</Text>
                 <View style={styles.cellAksi}>
                   <Pressable
-                    style={({ pressed }) => [styles.btnAksi, pressed && styles.btnPressed]}
-                    onPress={() => handleBukaUbah(m)}>
+                    style={({ pressed }) => [
+                      styles.btnAksi,
+                      pressed && styles.btnPressed,
+                    ]}
+                    onPress={() => handleBukaUbah(m)}
+                  >
                     <Text style={styles.btnAksiText}>Ubah</Text>
                   </Pressable>
                   <Pressable
@@ -400,7 +457,8 @@ export default function ModulScreen() {
                       styles.btnHapus,
                       pressed && styles.btnPressed,
                     ]}
-                    onPress={() => handleHapus(m)}>
+                    onPress={() => handleHapus(m)}
+                  >
                     <Text style={styles.btnAksiText}>Hapus</Text>
                   </Pressable>
                 </View>
@@ -409,31 +467,49 @@ export default function ModulScreen() {
           </>
         )}
 
-      {/* Pagination: Sebelumnya | Halaman X dari Y | Selanjutnya.
+        {/* Pagination: Sebelumnya | Halaman X dari Y | Selanjutnya.
           disabled = tombol enggak bisa diklik (style abu-abu). Di
           halaman 1 "Sebelumnya" disabled, di halaman terakhir
           "Selanjutnya" disabled. */}
-      <View style={styles.paginationWrapper}>
-        <Pressable
-          style={[styles.btnPagination, halamanAman <= 1 && styles.btnDisabled]}
-          onPress={() => setCurrentPage((p) => Math.max(1, p - 1))}
-          disabled={halamanAman <= 1}>
-          <Text style={[styles.btnText, halamanAman <= 1 && styles.btnTextDisabled]}>
-            Sebelumnya
+        <View style={styles.paginationWrapper}>
+          <Pressable
+            style={[
+              styles.btnPagination,
+              halamanAman <= 1 && styles.btnDisabled,
+            ]}
+            onPress={() => setCurrentPage((p) => Math.max(1, p - 1))}
+            disabled={halamanAman <= 1}
+          >
+            <Text
+              style={[
+                styles.btnText,
+                halamanAman <= 1 && styles.btnTextDisabled,
+              ]}
+            >
+              Sebelumnya
+            </Text>
+          </Pressable>
+          <Text style={styles.paginationInfo}>
+            Halaman {halamanAman} dari {totalPages}
           </Text>
-        </Pressable>
-        <Text style={styles.paginationInfo}>
-          Halaman {halamanAman} dari {totalPages}
-        </Text>
-        <Pressable
-          style={[styles.btnPagination, halamanAman >= totalPages && styles.btnDisabled]}
-          onPress={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
-          disabled={halamanAman >= totalPages}>
-          <Text style={[styles.btnText, halamanAman >= totalPages && styles.btnTextDisabled]}>
-            Selanjutnya
-          </Text>
-        </Pressable>
-      </View>
+          <Pressable
+            style={[
+              styles.btnPagination,
+              halamanAman >= totalPages && styles.btnDisabled,
+            ]}
+            onPress={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+            disabled={halamanAman >= totalPages}
+          >
+            <Text
+              style={[
+                styles.btnText,
+                halamanAman >= totalPages && styles.btnTextDisabled,
+              ]}
+            >
+              Selanjutnya
+            </Text>
+          </Pressable>
+        </View>
       </ScrollView>
 
       {/* Modal: lebar responsif (92% layar, max 400), padding aman untuk notch */}
@@ -441,22 +517,28 @@ export default function ModulScreen() {
         visible={modalVisible}
         transparent
         animationType="fade"
-        onRequestClose={handleTutupModal}>
+        onRequestClose={handleTutupModal}
+      >
         <Pressable
-          style={[styles.modalOverlay, { paddingTop: insets.top, paddingBottom: insets.bottom }]}
-          onPress={handleTutupModal}>
+          style={[
+            styles.modalOverlay,
+            { paddingTop: insets.top, paddingBottom: insets.bottom },
+          ]}
+          onPress={handleTutupModal}
+        >
           <Pressable
             style={[styles.modalBox, { width: width * 0.92, maxWidth: 400 }]}
-            onPress={(e) => e.stopPropagation()}>
+            onPress={(e) => e.stopPropagation()}
+          >
             <Text style={styles.modalTitle}>
-              {modeForm === 'tambah' ? 'Tambah Mahasiswa' : 'Ubah Mahasiswa'}
+              {modeForm === "tambah" ? "Tambah Mahasiswa" : "Ubah Mahasiswa"}
             </Text>
             <TextInput
               style={styles.input}
               placeholder="NIM"
               value={formNim}
               onChangeText={setFormNim}
-              editable={modeForm === 'tambah'}
+              editable={modeForm === "tambah"}
               placeholderTextColor="#999"
             />
             <TextInput
@@ -475,13 +557,23 @@ export default function ModulScreen() {
             />
             <View style={styles.modalActions}>
               <Pressable
-                style={({ pressed }) => [styles.btnModal, styles.btnBatal, pressed && styles.btnPressed]}
-                onPress={handleTutupModal}>
+                style={({ pressed }) => [
+                  styles.btnModal,
+                  styles.btnBatal,
+                  pressed && styles.btnPressed,
+                ]}
+                onPress={handleTutupModal}
+              >
                 <Text style={styles.btnBatalText}>Batal</Text>
               </Pressable>
               <Pressable
-                style={({ pressed }) => [styles.btnModal, styles.btnSimpan, pressed && styles.btnPressed]}
-                onPress={handleSubmitForm}>
+                style={({ pressed }) => [
+                  styles.btnModal,
+                  styles.btnSimpan,
+                  pressed && styles.btnPressed,
+                ]}
+                onPress={handleSubmitForm}
+              >
                 <Text style={styles.btnSimpanText}>Simpan</Text>
               </Pressable>
             </View>
@@ -508,143 +600,157 @@ export default function ModulScreen() {
      membulat. opacity = transparansi.
    ============================================================================= */
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#f8f9fa' },
+  container: { flex: 1, backgroundColor: "#f8f9fa" },
   scroll: { flex: 1 },
   content: { paddingTop: 20, paddingBottom: 32 },
-  title: { fontSize: 24, fontWeight: 'bold', color: '#1a1a1a', marginBottom: 6 },
-  subtitle: { fontSize: 15, color: '#5c5c5c', marginBottom: 20 },
+  title: {
+    fontSize: 24,
+    fontWeight: "bold",
+    color: "#1a1a1a",
+    marginBottom: 6,
+  },
+  subtitle: { fontSize: 15, color: "#5c5c5c", marginBottom: 20 },
   btnTambah: {
-    alignSelf: 'flex-start',
-    backgroundColor: '#2e7d32',
+    alignSelf: "flex-start",
+    backgroundColor: "#2e7d32",
     paddingVertical: 14,
     paddingHorizontal: 20,
     borderRadius: 12,
     marginBottom: 20,
     minHeight: 48,
-    justifyContent: 'center',
+    justifyContent: "center",
   },
-  btnTambahText: { color: '#fff', fontWeight: '600', fontSize: 15 },
+  btnTambahText: { color: "#fff", fontWeight: "600", fontSize: 15 },
   btnPressed: { opacity: 0.85 },
   /* Kartu per mahasiswa (layout mobile) */
   cardList: { gap: 12 },
   card: {
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     borderRadius: 12,
     padding: 16,
     borderWidth: 1,
-    borderColor: '#e8e8e8',
-    shadowColor: '#000',
+    borderColor: "#e8e8e8",
+    shadowColor: "#000",
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.06,
     shadowRadius: 4,
     elevation: 2,
   },
-  cardRow: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 8 },
-  cardLabel: { fontSize: 13, color: '#6c6c6c', flex: 0.4 },
-  cardValue: { fontSize: 14, color: '#1a1a1a', flex: 0.6, textAlign: 'right' },
-  cardValueBold: { fontWeight: '600' },
+  cardRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginBottom: 8,
+  },
+  cardLabel: { fontSize: 13, color: "#6c6c6c", flex: 0.4 },
+  cardValue: { fontSize: 14, color: "#1a1a1a", flex: 0.6, textAlign: "right" },
+  cardValueBold: { fontWeight: "600" },
   cardActions: {
-    flexDirection: 'row',
+    flexDirection: "row",
     gap: 10,
     marginTop: 14,
     paddingTop: 12,
     borderTopWidth: 1,
-    borderTopColor: '#eee',
+    borderTopColor: "#eee",
   },
   row: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     borderBottomWidth: 1,
-    borderBottomColor: '#e0e0e0',
+    borderBottomColor: "#e0e0e0",
     paddingVertical: 8,
     paddingHorizontal: 6,
   },
   headerRow: {
-    backgroundColor: '#0a7ea4',
-    borderBottomColor: '#086890',
+    backgroundColor: "#0a7ea4",
+    borderBottomColor: "#086890",
     paddingVertical: 12,
   },
-  headerText: { color: '#fff', fontWeight: 'bold' },
-  cell: { fontSize: 13, color: '#333' },
-  cellNo: { width: 32, textAlign: 'center' },
+  headerText: { color: "#fff", fontWeight: "bold" },
+  cell: { fontSize: 13, color: "#333" },
+  cellNo: { width: 32, textAlign: "center" },
   cellNim: { width: 68 },
   cellNama: { flex: 1, minWidth: 80 },
   cellProdi: { width: 120 },
-  cellAksi: { width: 120, flexDirection: 'row', gap: 6 },
+  cellAksi: { width: 120, flexDirection: "row", gap: 6 },
   btnAksi: {
     paddingVertical: 8,
     paddingHorizontal: 12,
-    backgroundColor: '#0a7ea4',
+    backgroundColor: "#0a7ea4",
     borderRadius: 8,
     minHeight: 40,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
-  btnHapus: { backgroundColor: '#c62828' },
-  btnAksiText: { color: '#fff', fontSize: 13, fontWeight: '600' },
+  btnHapus: { backgroundColor: "#c62828" },
+  btnAksiText: { color: "#fff", fontSize: 13, fontWeight: "600" },
   paginationWrapper: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
     marginTop: 24,
     paddingVertical: 12,
     paddingHorizontal: 8,
     borderTopWidth: 1,
-    borderTopColor: '#e0e0e0',
+    borderTopColor: "#e0e0e0",
   },
   btnPagination: {
     paddingVertical: 12,
     paddingHorizontal: 18,
-    backgroundColor: '#0a7ea4',
+    backgroundColor: "#0a7ea4",
     borderRadius: 10,
     minWidth: 100,
     minHeight: 44,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
-  btnDisabled: { backgroundColor: '#ccc', opacity: 0.8 },
-  btnText: { color: '#fff', fontWeight: '600', fontSize: 14 },
-  btnTextDisabled: { color: '#666' },
-  paginationInfo: { fontSize: 14, color: '#555', fontWeight: '500' },
+  btnDisabled: { backgroundColor: "#ccc", opacity: 0.8 },
+  btnText: { color: "#fff", fontWeight: "600", fontSize: 14 },
+  btnTextDisabled: { color: "#666" },
+  paginationInfo: { fontSize: 14, color: "#555", fontWeight: "500" },
   modalOverlay: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.52)',
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: "rgba(0,0,0,0.52)",
+    justifyContent: "center",
+    alignItems: "center",
     paddingHorizontal: 20,
   },
   modalBox: {
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     borderRadius: 16,
     padding: 24,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.15,
     shadowRadius: 12,
     elevation: 8,
   },
-  modalTitle: { fontSize: 20, fontWeight: 'bold', color: '#1a1a1a', marginBottom: 20 },
+  modalTitle: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "#1a1a1a",
+    marginBottom: 20,
+  },
   input: {
     borderWidth: 1.5,
-    borderColor: '#ddd',
+    borderColor: "#ddd",
     borderRadius: 10,
     paddingVertical: 14,
     paddingHorizontal: 16,
     marginBottom: 14,
     fontSize: 16,
-    backgroundColor: '#fafafa',
+    backgroundColor: "#fafafa",
   },
-  modalActions: { flexDirection: 'row', gap: 12, marginTop: 12 },
+  modalActions: { flexDirection: "row", gap: 12, marginTop: 12 },
   btnModal: {
     flex: 1,
     paddingVertical: 14,
     borderRadius: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     minHeight: 48,
   },
-  btnBatal: { backgroundColor: '#e0e0e0' },
-  btnBatalText: { color: '#333', fontWeight: '600' },
-  btnSimpan: { backgroundColor: '#0a7ea4' },
-  btnSimpanText: { color: '#fff', fontWeight: '600' },
+  btnBatal: { backgroundColor: "#e0e0e0" },
+  btnBatalText: { color: "#333", fontWeight: "600" },
+  btnSimpan: { backgroundColor: "#0a7ea4" },
+  btnSimpanText: { color: "#fff", fontWeight: "600" },
 });

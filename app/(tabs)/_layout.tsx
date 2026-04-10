@@ -94,6 +94,15 @@ export default function TabLayout() {
         }}
       />
 
+      {/* TAB: Data mahasiswa dari Supabase (read-only) — file mahasiswa-cloud.tsx */}
+      <Tabs.Screen
+        name="mahasiswa-cloud"
+        options={{
+          title: 'Cloud',
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="cloud.fill" color={color} />,
+        }}
+      />
+
       {/* TAB 5: Logout — tap → modal konfirmasi "Yakin mau logout?" → Batal / Ya, Logout. */}
       <Tabs.Screen
         name="logout"
