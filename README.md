@@ -11,7 +11,7 @@ Repo ini berisi **project praktikum** untuk mata kuliah **Pemrograman Perangkat 
 
 ## Screenshot Database
 | Cloud |  After Edit | Modal Tambah | After Tambah |
-|-----------|------------|------------|------------|------------|
+|-----------|------------|------------|
 | <img src="assets/Screenshot/database/Cloud.png" width="400"> | <img src="assets/Screenshot/database/After-Edit.png" width="400"> | <img src="assets/Screenshot/database/After-Tambah.png" width="400"> | 
 ## Isi Repo Ini Apa Saja?
 
