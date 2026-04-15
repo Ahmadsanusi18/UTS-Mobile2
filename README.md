@@ -4,7 +4,7 @@ Repo ini berisi **project praktikum** untuk mata kuliah **Pemrograman Perangkat 
 
 ---
 
-## Screenshot
+## Screenshot Tampilan Cloud
 | Cloud | Modal Edit| After Edit | Modal Tambah | After Tambah |
 |-----------|------------|------------|------------|------------|
 | <img src="assets/Screenshot/Cloud.jpeg" width="400"> | <img src="assets/Screenshot/Modal-Edit.jpeg" width="400"> | <img src="assets/Screenshot/After-Edit.jpeg" width="400"> | <img src="assets/Screenshot/Modal-Tambah.jpeg" width="400"> | <img src="assets/Screenshot/After-Tambah.jpeg" width="400"> |
